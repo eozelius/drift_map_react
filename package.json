@@ -1,5 +1,5 @@
 {
-  "name": "fucking_bs",
+  "name": "driftMap",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -16,6 +16,8 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
+    "axios": "^0.18.0",
+    "copy-webpack-plugin": "^4.5.1",
     "react-router-dom": "^4.2.2"
   }
 }

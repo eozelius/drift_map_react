@@ -9,10 +9,9 @@ import Signup from './Signup.js'
 import Login from './Login.js'
 
 export default class App extends Component {
- 
-  render() {
-    // const NoMatch = () => <h3>page not found</h3>
+  
 
+  render() {
     return (
       <BrowserRouter>
         <div>
