@@ -1,6 +1,9 @@
 {
   "name": "driftMap",
   "version": "0.1.0",
+  "proxy": "http://localhost:3003/",
+  "homepage": "https://github.com/eozelius/drift_map_react",
+  "repository": "https://github.com/eozelius/drift_map_react",
   "private": true,
   "dependencies": {
     "bootstrap": "^4.0.0",
