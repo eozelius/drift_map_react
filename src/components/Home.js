@@ -1,43 +1,61 @@
 import axios from 'axios'
 import React, { Component } from 'react'
 
-
 export default class Home extends Component {
   constructor(props) {
     super(props)
     this.state = { 
-      users: []
+      'user': {
+        'id': null,
+        'type': null,
+        'attributes': {
+          'description': '',
+          'email': '',
+          'first-name': '',
+          'last-name': '',
+        },
+        'relationships': {
+          'driftmap': {
+            'data': {
+              'id': null,
+
+            }
+          }
+        }
+      }
     }
   }
 
-  fetchUsers = () => {
-    return axios.get('/users')
+  componentDidMount() {
+    axios.get('users/1')
       .then((response) => {
-        window.ethan = response
-        console.log(response)
-        this.setState({ users: response.data.users })
+        this.setState({ user: response.data.data })
       })
       .catch((error) => {
         console.log(error);
-        return []
-      })    
-  }
-
-  componentDidMount() {
-    this.fetchUsers()
+      })
   }
 
   render () {
-    const renderedUsers = this.state.users.map((user, index) => (
-      <div className='user' key={index} >
-        <p>{user.email} {user.last_name}</p>
-      </div>
-    ))
+    const user = this.state.user
+
+    console.log(user.attributes['first-name'])
+
+    window.user = user
+
+    // console.log(user.attributes)
 
     return (
       <div className='users-container'>
         <h1>home</h1>
-        users: {renderedUsers}
+        <div className='user'>
+          <p>id: {user.id}</p> 
+          <p>type: {user.type}</p> 
+          <p>first name: {user.attributes['first-name']}</p> 
+          <p>last name: {user.attributes['last-name']}</p> 
+          <p>description: {user.attributes['description']}</p> 
+          
+        </div>
       </div>
     )
   }
