@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-class Api {
+export default class Api {
   static signup = (email, password, confirmation) => {
     const url = '/users'
     const params = {
@@ -14,14 +14,29 @@ class Api {
       },
     }
 
-    axios.post(url, params)
-      .then(function (response) {
-        console.log("sucess!!!!"  + JSON.stringify(response))
+    return axios.post(url, params)
+      .then((response) => {
+        return response
       })
-      .catch(function (error) {
-        console.log("error:  " + error)
+      .catch((error) => {
+        return error
+      })
+  }
+
+  static getUser = (id) => {
+    if(isNaN(id)){ 
+      console.log("invalid id")
+      return false
+    }
+
+    const url = `/users/${id}`
+
+    return axios.get(url)
+      .then((response) => {
+        return response
+      })
+      .catch((error) => {
+        return error
       })
   }
 }
-
-export default Api

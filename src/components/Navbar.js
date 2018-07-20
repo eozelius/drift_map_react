@@ -4,10 +4,8 @@ import {
   Collapse,
   Navbar,
   NavbarToggler,
-  // NavbarBrand,
   Nav,
   NavItem,
-  // NavLink,
 } from 'reactstrap'
 
 export default class DmNavbar extends React.Component {
