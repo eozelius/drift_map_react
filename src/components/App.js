@@ -9,8 +9,6 @@ import Signup from './Signup.js'
 import Login from './Login.js'
 
 export default class App extends Component {
-  
-
   render() {
     return (
       <BrowserRouter>

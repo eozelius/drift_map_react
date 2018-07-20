@@ -1,0 +1,10 @@
+.signup-container {
+
+}
+
+form {
+	margin: 10% auto 5%;
+	padding: 3% 5%;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}

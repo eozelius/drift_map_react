@@ -1,27 +1,19 @@
-import axios from 'axios'
 import React, { Component } from 'react'
+import { Col } from 'reactstrap'
+import axios from 'axios'
 
 export default class Home extends Component {
-  constructor(props) {
+  constructor(props){
     super(props)
-    this.state = { 
-      'user': {
-        'id': null,
-        'type': null,
-        'attributes': {
-          'description': '',
-          'email': '',
-          'first-name': '',
-          'last-name': '',
-        },
-        'relationships': {
-          'driftmap': {
-            'data': {
-              'id': null,
 
-            }
-          }
-        }
+    this.state = {
+      user: {
+        id: 0,
+        email: '',
+        first_name: '',
+        last_name: '',
+        description: '',
+
       }
     }
   }
@@ -29,7 +21,7 @@ export default class Home extends Component {
   componentDidMount() {
     axios.get('users/1')
       .then((response) => {
-        this.setState({ user: response.data.data })
+        this.setState({ user: response.data })
       })
       .catch((error) => {
         console.log(error);
@@ -39,22 +31,18 @@ export default class Home extends Component {
   render () {
     const user = this.state.user
 
-    console.log(user.attributes['first-name'])
-
-    window.user = user
-
-    // console.log(user.attributes)
+    console.log('ready to render: ' + JSON.stringify(user))
 
     return (
       <div className='users-container'>
         <h1>home</h1>
         <div className='user'>
-          <p>id: {user.id}</p> 
-          <p>type: {user.type}</p> 
-          <p>first name: {user.attributes['first-name']}</p> 
-          <p>last name: {user.attributes['last-name']}</p> 
-          <p>description: {user.attributes['description']}</p> 
-          
+          <Col lg={{size: 6, offset: 3}}>
+            <p>id: {user.id}</p> 
+            <p>first name: {user.first_name}</p> 
+            <p>last name: {user.last_name}</p> 
+            <p>description: {user.description}</p> 
+          </Col>          
         </div>
       </div>
     )
