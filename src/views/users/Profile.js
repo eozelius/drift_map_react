@@ -23,7 +23,7 @@ export default class Profile extends Component {
         this.setState({ user: response.data.data })
       })
       .catch((error) => {
-        console.log("error => " + error)
+        console.log(error)
       })
   }
 

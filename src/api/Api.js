@@ -7,8 +7,7 @@ export default class Api {
       data: {
         attributes: {
           email: email,
-          password: password,
-          password_confirmation: confirmation
+          password: password
         },
         type: 'users'
       },
@@ -25,15 +24,12 @@ export default class Api {
 
   static getUser = (id) => {
     if(isNaN(id)){ 
-      console.log("invalid id")
-      return false
+      return new Promise((resolve, reject) => reject("Error - Invalid Id"))
     }
 
     const token = localStorage.token
-
     if(token == null) {
-      console.log('Unauthorized - invalid token')
-      return false
+      return new Promise((resolve, reject) => reject("Error - Invalid Token"))
     }
 
     const url = `/users/${id}`
