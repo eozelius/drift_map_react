@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Container, Button, Form, FormGroup, Label, Input, Col } from 'reactstrap';
+import { Container, Button, Form, FormGroup, Input, Col } from 'reactstrap'
 import { Redirect } from 'react-router-dom'
 // import User from './User.js'
 
@@ -21,14 +21,11 @@ export default class Signup extends Component {
     const signupForm = document.getElementById('signup-form')
     const email = signupForm['email'].value
     const password = signupForm['password'].value
+    const first_name = signupForm['first_name'].value
+    const last_name = signupForm['last_name'].value
 
-    if(email == null || password == null){ return false }
-    if(email === ''  || password === '' ){ return false }
-
-    Api.signup(email, password)
+    Api.signup(first_name, last_name, email, password)
       .then((response) => {
-        const token = response.data.data.attributes.token
-        localStorage.token = token
         this.setState({ 
           redirectToProfilePage: true,
           newUser: response.data.data
@@ -48,19 +45,25 @@ export default class Signup extends Component {
 
     return (
       <Container className='signup-container'>
-        <Col lg={{size: 6, offset: 3 }} md={{size: 6, offset: 3}} sm={12} xs={12}>
+        <Col lg={{size: 4, offset: 4 }} md={{size: 4, offset: 4}} sm={12} xs={12}>
           <h1>Welcome to DriftMaps</h1>
 
           <Form onSubmit={this.signup} id='signup-form'>
             <FormGroup>
-              <Label for="exampleEmail">Email</Label>
+              <Input type="text" name="first_name" id="first_name" placeholder="first name" />
+            </FormGroup>
+
+            <FormGroup>
+              <Input type="text" name="last_name" id="last_name" placeholder="last name" />
+            </FormGroup>
+
+            <FormGroup>
               <Input type="email" name="email" id="email" placeholder="email" />
             </FormGroup>
-            <FormGroup lg={6} md={6} sm={8} xs={8} >
-              <Label for="password">Password</Label>
+            <FormGroup>
               <Input type="password" name="password" id="password" placeholder="password" />
             </FormGroup>
-            <Button>Submit</Button>
+            <Button>Register</Button>
           </Form>
         </Col>
       </Container>

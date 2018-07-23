@@ -10,9 +10,8 @@ export default class User extends Component {
 
       return (
         <div className='user-container'>
-          <h3>Hello {user.attributes['email']}</h3>
-          <h4>id {user.attributes['id']}</h4>
-          <h4>description {user.attributes['description']}</h4>
+          <h3>Hello {user.attributes['first-name']} {user.attributes['last-name']}</h3>
+          <h4>id: {user.id}</h4>
         </div>
       )
     }

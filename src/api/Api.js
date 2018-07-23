@@ -1,11 +1,13 @@
 import axios from 'axios'
 
 export default class Api {
-  static signup = (email, password, confirmation) => {
+  static signup = (first_name, last_name, email, password) => {
     const url = '/users'
     const params = {
       data: {
         attributes: {
+          first_name: first_name,
+          last_name: last_name,
           email: email,
           password: password
         },
@@ -15,6 +17,8 @@ export default class Api {
 
     return axios.post(url, params)
       .then((response) => {
+        const token = response.data.data.attributes.token
+        localStorage.token = token
         return response
       })
       .catch((error) => {
@@ -41,5 +45,35 @@ export default class Api {
       .catch((error) => {
         return error
       })
+  }
+
+  static login = (email, password) => {
+    if(typeof email !== "string"){
+      return new Promise((resolve, reject) => reject("Error - Invalid Email"))
+    } else if(typeof password !== "string") {
+      return new Promise((resolve, reject) => reject("Error - Invalid Password"))
+    }
+
+    const url = `/login`
+    const params = {
+      data: {
+        attributes: {
+          email: email,
+          password: password
+        }
+      },
+      type: 'user_token'
+    }
+
+    return axios.post(url, params)
+      .then((response) => {
+        const token = response.data.data.attributes.token
+        localStorage.token = token
+        return response
+      })
+      .catch((error) => {
+        return(error)
+      })
+
   }
 }
