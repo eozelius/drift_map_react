@@ -19,7 +19,7 @@ export default class App extends Component {
             <Route exact path='/' component={Home} />
             <Route path='/signup' component={Signup} />
             <Route path='/login'  component={Login} />
-            <Route path='/users/' component={Profile} />
+            <Route path='/users/:id' component={Profile} />
           </Switch>
         </div>
       </BrowserRouter>

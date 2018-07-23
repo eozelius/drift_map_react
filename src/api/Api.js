@@ -29,9 +29,16 @@ export default class Api {
       return false
     }
 
+    const token = localStorage.token
+
+    if(token == null) {
+      console.log('Unauthorized - invalid token')
+      return false
+    }
+
     const url = `/users/${id}`
 
-    return axios.get(url)
+    return axios.get(url, { headers: { 'X-Api-Key': token }} )
       .then((response) => {
         return response
       })

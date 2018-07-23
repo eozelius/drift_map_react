@@ -16,7 +16,7 @@ export default class Profile extends Component {
   }
 
   componentDidMount(){
-    const userId = this.props.history.length
+    const userId = this.props.match.params.id
 
     Api.getUser(userId)
       .then((response) => {

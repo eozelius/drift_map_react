@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 
 export default class User extends Component {
   render(){
-    console.log('ready to render')
-
     if(this.props.user == null){
       return <h5>waiting...</h5>
     } else {
@@ -13,8 +11,8 @@ export default class User extends Component {
       return (
         <div className='user-container'>
           <h3>Hello {user.attributes['email']}</h3>
-          <p>{user.email}</p>
-          <p>{user.description}</p>
+          <h4>id {user.attributes['id']}</h4>
+          <h4>description {user.attributes['description']}</h4>
         </div>
       )
     }

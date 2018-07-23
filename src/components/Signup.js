@@ -21,14 +21,14 @@ export default class Signup extends Component {
     const signupForm = document.getElementById('signup-form')
     const email = signupForm['email'].value
     const password = signupForm['password'].value
-    const confirmation = signupForm['password_confirmation'].value
 
     if(email == null || password == null){ return false }
-    if(password !== confirmation){ return false }
-    if(email === '' || password === '' || confirmation === '' ){ return false }
+    if(email === ''  || password === '' ){ return false }
 
     Api.signup(email, password)
       .then((response) => {
+        const token = response.data.data.attributes.token
+        localStorage.token = token
         this.setState({ 
           redirectToProfilePage: true,
           newUser: response.data.data
@@ -59,10 +59,6 @@ export default class Signup extends Component {
             <FormGroup lg={6} md={6} sm={8} xs={8} >
               <Label for="password">Password</Label>
               <Input type="password" name="password" id="password" placeholder="password" />
-            </FormGroup>
-            <FormGroup lg={6} md={6} sm={8} xs={8} >
-              <Label for="password">password confirmation</Label>
-              <Input type="password" name="password_confirmation" id="password_confirmation" placeholder="password confirmation" />
             </FormGroup>
             <Button>Submit</Button>
           </Form>
