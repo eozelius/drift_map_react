@@ -34,13 +34,13 @@ export default class DmNavbar extends React.Component {
             <Nav className="ml-auto" navbar>
               <NavItem>
                 <Link to="/signup" className='nav-link'>
-                  Register
+                  Sign Up
                 </Link>
               </NavItem>
 
               <NavItem>
                 <Link to="/login" className='nav-link'>
-                  Log in
+                  Log In
                 </Link>
               </NavItem>
             </Nav>

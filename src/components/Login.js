@@ -40,7 +40,7 @@ export default class Login extends Component {
     return (
       <Container className='login-container'>
         <Col lg={{size: 4, offset: 4 }} md={{size: 4, offset: 4}} sm={12} xs={12}>
-          <h1>Login</h1>
+          <h1>Log In</h1>
 
           <Form onSubmit={this.login} id='login-form'>
             <FormGroup>

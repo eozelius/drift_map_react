@@ -46,7 +46,7 @@ export default class Signup extends Component {
     return (
       <Container className='signup-container'>
         <Col lg={{size: 4, offset: 4 }} md={{size: 4, offset: 4}} sm={12} xs={12}>
-          <h1>Welcome to DriftMaps</h1>
+          <h1>Sign Up</h1>
 
           <Form onSubmit={this.signup} id='signup-form'>
             <FormGroup>
