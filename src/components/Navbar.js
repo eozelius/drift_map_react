@@ -1,28 +1,33 @@
-import React from 'react';
+import React from 'react'
 import { Link } from 'react-router-dom'
 import {
   Collapse,
   Navbar,
   NavbarToggler,
-  Nav,
-  NavItem,
 } from 'reactstrap'
+
+import SignupNav from './SignupNav'
+import LoggedInNav from './LoggedInNav'
 
 export default class DmNavbar extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
 
-    this.toggle = this.toggle.bind(this);
     this.state = {
       isOpen: false
-    };
+    }
   }
-  toggle() {
+  toggle = () => {
     this.setState({
       isOpen: !this.state.isOpen
-    });
+    })
   }
+
   render() {
+    const loggedIn = typeof localStorage.token === "undefined" ? false : true
+
+    console.log(loggedIn)
+
     return (
       <div id="Navbar">
         <Navbar className='navbar-dark bg-dark' color="faded" light expand="md">
@@ -31,22 +36,10 @@ export default class DmNavbar extends React.Component {
           </Link>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
-            <Nav className="ml-auto" navbar>
-              <NavItem>
-                <Link to="/signup" className='nav-link'>
-                  Sign Up
-                </Link>
-              </NavItem>
-
-              <NavItem>
-                <Link to="/login" className='nav-link'>
-                  Log In
-                </Link>
-              </NavItem>
-            </Nav>
+            { loggedIn ? <LoggedInNav /> : <SignupNav /> }
           </Collapse>
         </Navbar>
       </div>
-    );
+    )
   }
 }
