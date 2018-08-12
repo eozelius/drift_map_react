@@ -24,9 +24,7 @@ export default class DmNavbar extends React.Component {
   }
 
   render() {
-    const loggedIn = typeof localStorage.token === "undefined" ? false : true
-
-    console.log(loggedIn)
+    const userId = localStorage.getItem('userId')
 
     return (
       <div id="Navbar">
@@ -36,7 +34,7 @@ export default class DmNavbar extends React.Component {
           </Link>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
-            { loggedIn ? <LoggedInNav /> : <SignupNav /> }
+            { userId ? <LoggedInNav id={userId} /> : <SignupNav /> }
           </Collapse>
         </Navbar>
       </div>

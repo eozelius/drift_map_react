@@ -1,15 +1,9 @@
-import React, { Component } from 'react'
-import { Col } from 'reactstrap'
+import React from 'react'
 
-export default class Home extends Component {
-  render () {
-    return (
-      <div className='home-container'>
-        <Col lg={{size: 6, offset: 3}}>
-          <h1>home</h1>
-          <p>welcome to driftMaps</p>
-        </Col>          
-      </div>
-    )
-  }
-}
+const Home = props => (
+  <div className='home-container'>
+    <h1>Welcome to driftMaps</h1>
+  </div>
+)
+
+export default Home

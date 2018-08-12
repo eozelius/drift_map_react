@@ -11,8 +11,7 @@ export default class Signup extends Component {
     super(props)
 
     this.state = {
-      redirectToProfilePage: false,
-      newUser: null,
+      redirectToProfilePage: false
     }
   }  
 
@@ -28,7 +27,6 @@ export default class Signup extends Component {
       .then((response) => {
         this.setState({ 
           redirectToProfilePage: true,
-          newUser: response.data.data
         })
       })
       .catch((error) => {
@@ -39,8 +37,8 @@ export default class Signup extends Component {
 
   render() {
     if (this.state.redirectToProfilePage) {
-      const id = this.state.newUser.id
-      return <Redirect to={{ pathname: `/users/${id}`, state: { id: id } }} />
+      const id = localStorage.getItem('userId')
+      return <Redirect to={`/users/${id}`} />
     }
 
     return (

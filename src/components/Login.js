@@ -1,15 +1,17 @@
 import React, { Component } from 'react'
 import { Container, Button, Form, FormGroup, Input, Col } from 'reactstrap'
 import { Redirect } from 'react-router-dom'
+import Api from '../api/Api'
 
-import Api from '../api/Api.js'
+// import { bindActionCreators } from 'redux'
+// import { connect } from 'react-redux'
+// import { login } from '../modules/login'
 
-export default class Login extends Component {
+class Login extends Component {
   constructor(props){
     super(props)
     this.state = {
-      redirectToProfilePage: false,
-      loggedInUser: null
+      redirectToProfilePage: false
     }
   }
 
@@ -18,22 +20,19 @@ export default class Login extends Component {
     const form = document.getElementById('login-form')
     const email = form['email'].value
     const password = form['password'].value
-
     Api.login(email, password)
       .then((response) => {
-        this.setState({
-          redirectToProfilePage: true,
-          loggedInUser: response.data.data
-        })
+        console.log('success => ' + response)
+        this.setState({ redirectToProfilePage: true })
       })
       .catch((error) => {
-        console.log("error => " + error)
+        console.log('error => ' + error)
       })
   }
 
   render () {
     if(this.state.redirectToProfilePage){
-      const id = this.state.loggedInUser.id
+      const id = localStorage.getItem('userId')
       return <Redirect to={`/users/${id}`} />
     }
 
@@ -41,7 +40,6 @@ export default class Login extends Component {
       <Container className='login-container'>
         <Col lg={{size: 4, offset: 4 }} md={{size: 4, offset: 4}} sm={12} xs={12}>
           <h1>Log In</h1>
-
           <Form onSubmit={this.login} id='login-form'>
             <FormGroup>
               <Input type="email" name="email" id="email" placeholder="email" />
@@ -58,3 +56,18 @@ export default class Login extends Component {
     )
   }
 }
+
+export default Login
+
+// const mapStateToProps = ({ login }) => ({
+//   redirectToProfilePage: login.redirectToProfilePage,
+//   loggedInUser: login.loggedInUser,
+//   isAuthenticating: login.isAuthenticating
+// })
+
+// const mapDispatchToProps = dispatch => bindActionCreators({ login }, dispatch)
+
+// export default connect(
+//   mapStateToProps,
+//   mapDispatchToProps
+// )(Login)

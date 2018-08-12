@@ -10,7 +10,7 @@ export default class LoggedInNav extends Component {
     return (
       <Nav className="ml-auto" navbar>
         <NavItem>
-          <Link to="/users/" className='nav-link'>
+          <Link to={`/users/${this.props.id}`} className='nav-link'>
             Profile
           </Link>
         </NavItem>
