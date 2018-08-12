@@ -3,11 +3,6 @@ import '../../styles/Profile.css'
 import Api from '../../api/Api'
 import { Container, Col } from 'reactstrap'
 
-// import { fetchUser } from '../../modules/user'
-// import { bindActionCreators } from 'redux'
-// import { connect } from 'react-redux'
-
-
 class Profile extends Component {
   constructor(props){
     super(props)
@@ -18,8 +13,7 @@ class Profile extends Component {
   }
 
   componentDidMount(){
-    const id = localStorage.getItem('userId')
-    Api.getUser(id)
+    Api.getUser()
       .then((response) => {
         this.setState({
           user: response.data.data

@@ -1,13 +1,14 @@
 import axios from 'axios'
 
 export default class Api {
-  static signup = (first_name, last_name, email, password) => {
+  static signup = (first_name, last_name, description, email, password) => {
     const url = '/users'
     const params = {
       data: {
         attributes: {
           first_name: first_name,
           last_name: last_name,
+          description: description,
           email: email,
           password: password
         },
@@ -28,15 +29,12 @@ export default class Api {
       })
   }
 
-  static getUser = (id) => {
-    if(isNaN(id)){ 
-      return new Promise((resolve, reject) => reject("Error - Invalid Id"))
-    }
-
+  static getUser = () => {
     const token = localStorage.getItem('token')
-    if(typeof token === 'undefined') {
-      return new Promise((resolve, reject) => reject("Error - Invalid Token"))
-    }
+    if(!token) { return new Promise((resolve, reject) => reject("Error - Invalid Token")) }
+
+    const id = localStorage.getItem('userId')
+    if(!id){ return new Promise((resolve, reject) => reject("Error - Invalid Id")) }
 
     const url = `/users/${id}`
 
